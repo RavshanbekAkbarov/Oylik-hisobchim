@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d6b56">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Harajat Daftari</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: bitta ustun, pastda 3 ta bo'lim (Asosiy, Rejalar, Qarzlar); har bo'lim kartalar ketma-ketligi */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --ink: #17221f;
+  --muted: #5f6d68;
+  --line: #dde3df;
+  --accent: #1d6b56;
+  --accent-soft: #d8ebe3;
+  --hot: #c9781a;
+  --hot-soft: #f8e8d2;
+  --danger: #c0352a;
+  --danger-soft: #fbe1de;
+  --save: #2c4f86;
+  --c1: #2f9e6e; --c2: #3b7dd8; --c3: #e0892b; --c4: #8a5cd6; --c5: #d94f7a;
+  --c6: #c9a227; --c7: #1fa3b8; --c8: #e2593b; --c9: #6b8f3a; --c10: #8a958f;
+  --display: "Unbounded", "Arial Black", sans-serif;
+  --body: "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111816; --surface: #19221f; --ink: #e6ede9; --muted: #93a39c; --line: #2a3632;
+  --accent: #5cc3a0; --accent-soft: #1f3a31; --hot: #e9a24a; --hot-soft: #3a2c17; --danger: #f07b6f; --danger-soft: #3d1f1c; --save: #7ea6e6;
+  --c1: #4cc38c; --c2: #6aa2f0; --c3: #f0a24e; --c4: #a988ec; --c5: #ee7aa0; --c6: #e0c04e; --c7: #4cc4d6; --c8: #f27e62; --c9: #9cc463; --c10: #8f9b95;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #111816; --surface: #19221f; --ink: #e6ede9; --muted: #93a39c; --line: #2a3632;
+  --accent: #5cc3a0; --accent-soft: #1f3a31; --hot: #e9a24a; --hot-soft: #3a2c17; --danger: #f07b6f; --danger-soft: #3d1f1c; --save: #7ea6e6;
+  --c1: #4cc38c; --c2: #6aa2f0; --c3: #f0a24e; --c4: #a988ec; --c5: #ee7aa0; --c6: #e0c04e; --c7: #4cc4d6; --c8: #f27e62; --c9: #9cc463; --c10: #8f9b95;
+  color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.45 var(--body); }
+.wrap { max-width: 560px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 96px; display: grid; gap: 18px; }
+.tab { display: grid; gap: 18px }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+h1, h2 { margin: 0; text-wrap: balance }
+.label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600 }
+
+header { display: grid; gap: 10px }
+.brand { display: flex; justify-content: space-between; align-items: center; gap: 8px }
+.brand h1 { font: 700 18px var(--display); letter-spacing: -.01em }
+.save { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px }
+.save i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); display: inline-block }
+.save.ok i { background: var(--accent) }
+.month { display: flex; align-items: center; justify-content: space-between; gap: 8px }
+.month button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; cursor: pointer }
+.month .mname { text-align: center }
+.month .mname b { display: block; font: 500 14px var(--body); color: var(--muted) }
+.month .mname .total { font: 700 30px var(--display); letter-spacing: -.02em }
+.month .mname .total small { font: 500 14px var(--body); color: var(--muted); margin-left: 4px }
+
+.alerts { display: grid; gap: 8px }
+.alert { border-radius: 12px; padding: 12px 14px; display: grid; gap: 2px; border: 1px solid transparent }
+.alert b { font: 700 15px var(--body) }
+.alert span { font-size: 13px }
+.alert.red { background: var(--danger-soft); color: var(--danger); border-color: var(--danger) }
+.alert.amber { background: var(--hot-soft); color: var(--hot) }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 12px; min-width: 0 }
+.card h2 { font: 600 15px var(--body) }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center }
+.between { justify-content: space-between }
+
+textarea, input, select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; min-width: 0 }
+textarea { resize: vertical; min-height: 56px }
+textarea:focus, input:focus, select:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px }
+.hint { font-size: 12.5px; color: var(--muted) }
+.btn { border: 0; border-radius: 10px; padding: 11px 16px; font: 600 15px var(--body); background: var(--accent); color: var(--surface); cursor: pointer }
+.btn.ghost { background: var(--accent-soft); color: var(--accent) }
+.btn.small { padding: 7px 12px; font-size: 13px }
+.btn.warn { background: var(--danger); }
+.btn:disabled { opacity: .6 }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 8px }
+.inline { display: grid; grid-template-columns: 1fr auto; gap: 8px }
+.preview { display: grid; gap: 4px }
+.preview div { display: flex; justify-content: space-between; gap: 8px; font-size: 13.5px; padding: 6px 10px; border-radius: 8px; background: var(--accent-soft) }
+.preview div.bad { background: transparent; border: 1px dashed var(--danger); color: var(--danger) }
+.msg { font-size: 13px; color: var(--accent); min-height: 1em }
+.msg.warn { color: var(--danger) }
+.linkbtn { border: 0; background: none; color: var(--accent); font: 600 13px var(--body); cursor: pointer; padding: 4px 0 }
+.track { height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; display: flex }
+.track span, .fill { height: 100% }
+.fill { border-radius: 5px; background: var(--accent) }
+
+/* Oylik */
+.salary .big { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px }
+.salary .big div { display: grid; gap: 2px; min-width: 0 }
+.salary .big .v { font: 500 16px var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere }
+.salary .big .left .v { color: var(--accent); font-weight: 700 }
+.salary .big .left.neg .v { color: var(--danger) }
+.salary .track { height: 12px; border-radius: 6px }
+
+/* Bashorat */
+.fc { display: grid; gap: 10px }
+.fc .line { display: flex; justify-content: space-between; gap: 10px; font-size: 14px }
+.fc .verdict { border-radius: 10px; padding: 10px 12px; font-size: 14px; font-weight: 600 }
+.fc .verdict.ok { background: var(--accent-soft); color: var(--accent) }
+.fc .verdict.bad { background: var(--danger-soft); color: var(--danger) }
+.weekbars { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; align-items: end; height: 84px }
+.weekbars div { display: grid; gap: 4px; justify-items: center; align-content: end; height: 100%; min-width: 0 }
+.weekbars b { width: 100%; border-radius: 4px 4px 2px 2px; background: var(--accent); min-height: 2px }
+.weekbars b.prev { background: var(--line) }
+.weekbars span { font-size: 10.5px; color: var(--muted) }
+.weekbars .pair { display: flex; gap: 2px; width: 100%; align-items: end; height: 64px }
+.weekbars .pair b { flex: 1 }
+
+/* Limitlar */
+.budgets { display: grid; gap: 12px }
+.bud { display: grid; gap: 6px }
+.bud .top, .lineItem { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; font-size: 14px }
+.bud .name { font-weight: 600; min-width: 0; overflow-wrap: anywhere }
+.bud.amber .fill { background: var(--hot) }
+.bud.red .fill { background: var(--danger) }
+.bud .sub { font-size: 12.5px; color: var(--muted) }
+.bud.red .sub { color: var(--danger); font-weight: 600 }
+
+/* Doimiy to'lovlar */
+.recs { display: grid; gap: 2px }
+.lineItem { padding: 8px 0; border-top: 1px solid var(--line) }
+.lineItem .n { min-width: 0; overflow-wrap: anywhere }
+.lineItem .c { font-size: 12px; color: var(--muted) }
+.formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px }
+.formGrid .full { grid-column: 1 / -1 }
+.suggest { border: 1px dashed var(--accent); border-radius: 12px; padding: 12px; display: grid; gap: 8px; background: var(--accent-soft) }
+.suggest .r { display: flex; justify-content: space-between; gap: 8px; font-size: 14px }
+
+/* Jamg'arma */
+.goals { display: grid; gap: 14px }
+.goal { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center }
+.goal svg { width: 64px; height: 64px; display: block }
+.goal .ring-t { fill: var(--ink); font: 600 12px var(--mono) }
+.goal .info { display: grid; gap: 4px; min-width: 0 }
+.goal .gn { font-weight: 600; display: flex; justify-content: space-between; gap: 8px }
+.goal .gs { font-size: 12.5px; color: var(--muted) }
+.goal .addRow { display: grid; grid-template-columns: 1fr auto auto; gap: 6px }
+.goal .addRow input { padding: 7px 10px }
+
+/* Qarzlar */
+.debtTotals { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.dt { border-radius: 14px; padding: 14px; display: grid; gap: 2px }
+.dt.in { background: var(--accent-soft); color: var(--accent) }
+.dt.out { background: var(--danger-soft); color: var(--danger) }
+.dt .v { font: 700 20px var(--display); letter-spacing: -.02em; overflow-wrap: anywhere }
+.dt .s { font-size: 12.5px; opacity: .85 }
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg); border-radius: 10px; padding: 3px; gap: 3px }
+.seg button { border: 0; border-radius: 8px; padding: 8px; font: 600 13.5px var(--body); color: var(--muted); background: transparent; cursor: pointer }
+.seg button.on { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08) }
+.debts { display: grid; gap: 10px }
+.debt { display: grid; grid-template-columns: 42px 1fr auto; gap: 12px; align-items: center; padding: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface) }
+.debt .av { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--display); color: var(--surface) }
+.debt .who { font-weight: 600; min-width: 0; overflow-wrap: anywhere }
+.debt .meta { font-size: 12.5px; color: var(--muted) }
+.debt .meta.late { color: var(--danger); font-weight: 600 }
+.debt .meta.soon { color: var(--hot); font-weight: 600 }
+.debt .amt { text-align: right; display: grid; gap: 4px; justify-items: end }
+.debt .amt .num { font-weight: 600 }
+.debt.in .amt .num { color: var(--accent) }
+.debt.out .amt .num { color: var(--danger) }
+.debt.paid { opacity: .55 }
+details summary { cursor: pointer; font-size: 13px; color: var(--muted); font-weight: 600 }
+
+.donutWrap { display: grid; grid-template-columns: minmax(0, 170px) 1fr; gap: 16px; align-items: center }
+.donut svg { width: 100%; height: auto; display: block; max-width: 100% }
+.donut .ct { fill: var(--ink); font: 700 17px var(--display) }
+.donut .cs { fill: var(--muted); font: 11px var(--body) }
+.cats { display: grid; gap: 8px; min-width: 0 }
+.cat { display: grid; grid-template-columns: 10px 1fr auto; gap: 8px; align-items: center; font-size: 13.5px }
+.cat i { width: 10px; height: 10px; border-radius: 50% }
+.cat .p { color: var(--muted); font-size: 12px }
+@media (max-width: 380px) { .donutWrap { grid-template-columns: 1fr } .donut { max-width: 200px; margin: 0 auto } }
+
+.cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px }
+.cal .wd { text-align: center; font-size: 11px; color: var(--muted); font-weight: 600; padding-bottom: 2px }
+.cal button { border: 1px solid transparent; border-radius: 8px; min-height: 48px; padding: 4px 2px; display: grid; align-content: space-between; justify-items: center; gap: 2px; font: inherit; color: var(--ink); cursor: pointer; background: var(--bg) }
+.cal button .d { font-size: 12px; font-weight: 600 }
+.cal button .a { font: 10px var(--mono); font-variant-numeric: tabular-nums; color: var(--muted) }
+.cal button.has .a { color: var(--ink) }
+.cal button.today { border-color: var(--ink) }
+.cal button.max { border-color: var(--hot); border-width: 2px }
+.cal button.sel { outline: 2px solid var(--accent); outline-offset: 1px }
+.cal button.future { opacity: .45 }
+.dayDetail { display: grid; gap: 4px; font-size: 13.5px }
+.dayDetail .r { display: flex; justify-content: space-between; gap: 8px }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--muted); flex-wrap: wrap; align-items: center }
+.legend span { display: inline-flex; align-items: center; gap: 6px }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block }
+
+.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 4px; min-width: 0 }
+.kpi .v { font: 500 18px var(--mono); font-variant-numeric: tabular-nums }
+.kpi .s { font-size: 12px; color: var(--muted) }
+.up { color: var(--danger) } .down { color: var(--accent) }
+
+.days { display: grid; gap: 14px }
+.day h3 { margin: 0 0 6px; display: flex; justify-content: space-between; font: 600 13px var(--body); color: var(--muted) }
+.item { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
+.item .n { min-width: 0; overflow-wrap: anywhere }
+.item .c { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px }
+.item .c i { width: 7px; height: 7px; border-radius: 50%; display: inline-block }
+.del { border: 0; background: transparent; color: var(--muted); font-size: 18px; min-width: 34px; height: 34px; border-radius: 8px; cursor: pointer }
+.del.arm { background: var(--danger); color: var(--surface); font-size: 12px; padding: 0 10px; font-weight: 600 }
+
+.empty { text-align: center; padding: 20px 8px; color: var(--muted); display: grid; gap: 12px; justify-items: center }
+.banner { background: var(--accent-soft); color: var(--accent); border-radius: 10px; padding: 10px 12px; font-size: 13px }
+.backup textarea { font: 12px var(--mono); min-height: 90px }
+
+/* Pastki menyu */
+nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line);
+  padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); padding-top: 6px; padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px)) }
+nav.tabs .in { max-width: 560px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px }
+nav.tabs button { border: 0; background: transparent; color: var(--muted); font: 600 12.5px var(--body); padding: 6px 4px; border-radius: 10px; cursor: pointer; display: grid; justify-items: center; gap: 2px }
+nav.tabs button svg { width: 22px; height: 22px }
+nav.tabs button.on { color: var(--accent); background: var(--accent-soft) }
+nav.tabs .badge { font: 600 10px var(--mono); background: var(--danger); color: var(--surface); border-radius: 8px; padding: 0 5px; margin-left: 2px }
+@media (prefers-reduced-motion: no-preference) { .fill, .track span { transition: width .4s ease } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Harajat Daftari</h1>
+      <span class="save" id="save"><i></i><span>Yuklanmoqda…</span></span>
+    </div>
+    <div class="month" id="monthBar">
+      <button id="prev" aria-label="Oldingi oy">‹</button>
+      <div class="mname"><b id="mlabel"></b><span class="total"><span class="num" id="mtotal">0</span><small>so'm</small></span></div>
+      <button id="next" aria-label="Keyingi oy">›</button>
+    </div>
+  </header>
+
+  <div class="alerts" id="alerts" aria-live="polite"></div>
+
+  <!-- ===== ASOSIY ===== -->
+  <div class="tab" id="tab-main">
+    <section class="card salary" aria-labelledby="h-sal">
+      <div class="row between"><h2 id="h-sal">Oylik</h2><button class="linkbtn" id="salEdit">O'zgartirish</button></div>
+      <div class="big">
+        <div><span class="label">Oylik</span><span class="v" id="s-in">—</span></div>
+        <div><span class="label">Sarflandi</span><span class="v" id="s-out">0</span></div>
+        <div class="left" id="s-leftBox"><span class="label">Qoldi</span><span class="v" id="s-left">—</span></div>
+      </div>
+      <div class="track" id="s-track" aria-hidden="true"></div>
+      <div class="hint" id="s-hint"></div>
+      <div class="inline" id="salForm" hidden>
+        <input id="salTxt" placeholder="5 mln yoki 4500000" aria-label="Oylik summasi">
+        <button class="btn" id="salSave">Saqlash</button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-add">
+      <div class="row between"><h2 id="h-add">Bugun nima oldingiz?</h2><span class="hint">Bugun: <b class="num" id="today">0</b></span></div>
+      <textarea id="txt" rows="3" placeholder="non 5000&#10;taksi 15 ming&#10;kitob 50k"></textarea>
+      <div class="split">
+        <label class="hint">Sana<input type="date" id="date"></label>
+        <label class="hint">Kategoriya<select id="cat"><option value="">Avtomatik</option></select></label>
+      </div>
+      <div class="preview" id="preview"></div>
+      <button class="btn" id="add">Qo'shish</button>
+      <div class="msg" id="msg" role="status"></div>
+      <div class="hint">Har qatorga bitta xarid: nomi va narxi. "ming" yoki "k" ham bo'ladi.</div>
+    </section>
+
+    <section class="card fc" aria-labelledby="h-fc">
+      <h2 id="h-fc">Hafta va bashorat</h2>
+      <div id="forecast"></div>
+    </section>
+
+    <div id="demoBanner" class="banner" hidden>Bu namuna ma'lumot. Birinchi xarajatingizni qo'shsangiz, namuna o'chadi.</div>
+
+    <section class="card" aria-labelledby="h-cat">
+      <h2 id="h-cat">Pul nimalarga ketdi</h2>
+      <div class="donutWrap">
+        <div class="donut" id="donut"></div>
+        <div class="cats" id="cats"></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-cal">
+      <h2 id="h-cal">Oy kalendari</h2>
+      <div class="cal" id="cal"></div>
+      <div class="legend"><span>Kam</span><i style="background:color-mix(in srgb, var(--accent) 12%, var(--bg))"></i><i style="background:color-mix(in srgb, var(--accent) 40%, var(--bg))"></i><i style="background:color-mix(in srgb, var(--accent) 75%, var(--bg))"></i><span>Ko'p</span><span><i style="border:2px solid var(--hot)"></i>Eng ko'p kun</span></div>
+      <div class="dayDetail" id="dayDetail"></div>
+    </section>
+
+    <div class="kpis">
+      <div class="kpi"><span class="label">Kuniga o'rtacha</span><span class="v" id="k-avg">0</span><span class="s" id="k-avg-s"></span></div>
+      <div class="kpi"><span class="label">Eng ko'p kun</span><span class="v" id="k-max">0</span><span class="s" id="k-max-s"></span></div>
+      <div class="kpi"><span class="label">Xaridlar soni</span><span class="v" id="k-cnt">0</span><span class="s" id="k-cnt-s"></span></div>
+      <div class="kpi"><span class="label">O'tgan oyga nisbatan</span><span class="v" id="k-prev">—</span><span class="s" id="k-prev-s"></span></div>
+    </div>
+
+    <section class="card" aria-labelledby="h-list">
+      <h2 id="h-list">Kunma-kun ro'yxat</h2>
+      <div class="days" id="days"></div>
+    </section>
+  </div>
+
+  <!-- ===== REJALAR ===== -->
+  <div class="tab" id="tab-plan" hidden>
+    <section class="card" aria-labelledby="h-rec">
+      <h2 id="h-rec">Doimiy to'lovlar</h2>
+      <div class="hint">Bir marta kiritasiz, har kuni yoki har oy o'zi hisobga qo'shiladi.</div>
+      <div id="recSuggest"></div>
+      <div class="recs" id="recs"></div>
+      <div class="formGrid">
+        <input class="full" id="recName" placeholder="Nomi: yo'lkira, internet…" aria-label="To'lov nomi">
+        <input id="recAmt" placeholder="Summa: 27 ming" aria-label="Summa">
+        <select id="recFreq" aria-label="Qanchalik tez-tez">
+          <option value="month">Har oy</option>
+          <option value="day">Har kuni</option>
+          <option value="work">Ish kunlari (Du–Ju)</option>
+        </select>
+        <label class="hint" id="recDayWrap">Oyning nechanchi kuni<input id="recDay" type="number" min="1" max="31" value="1"></label>
+        <label class="hint">Kategoriya<select id="recCat"><option value="">Avtomatik</option></select></label>
+        <button class="btn full" id="recAdd">Doimiy to'lov qo'shish</button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-goal">
+      <h2 id="h-goal">Jamg'arma maqsadlari</h2>
+      <div class="goals" id="goals"></div>
+      <div class="inline">
+        <input id="goalTxt" placeholder="noutbuk 8 mln" aria-label="Maqsad: nomi va summasi">
+        <button class="btn" id="goalAdd">Qo'shish</button>
+      </div>
+      <div class="hint">Jamg'armaga qo'ygan pulingiz oylikdan "qoldi" hisobidan ayiriladi.</div>
+    </section>
+
+    <section class="card" aria-labelledby="h-bud">
+      <h2 id="h-bud">Bu oy uchun ajratilgan pul</h2>
+      <div class="inline">
+        <input id="budTxt" placeholder="kitob 150 ming" aria-label="Limit: nomi va summasi">
+        <button class="btn" id="budAdd">Ajratish</button>
+      </div>
+      <div class="hint">Narsa nomi (kitob, taksi) yoki kategoriya (Oziq-ovqat) yozing.</div>
+      <div class="budgets" id="budgets"></div>
+    </section>
+
+    <section class="card backup" aria-labelledby="h-bak">
+      <h2 id="h-bak">Zaxira nusxa</h2>
+      <div class="hint">Hamma ma'lumotni faylga saqlab qo'ying. Boshqa joyga ko'chsangiz, shu fayl bilan tiklaysiz.</div>
+      <div class="row"><button class="btn ghost" id="bakOut">Faylga saqlash</button><label class="btn ghost" for="bakFile" style="display:inline-block">Fayldan tiklash</label><input type="file" id="bakFile" accept=".json,application/json" hidden></div>
+      <textarea id="bakTxt" hidden aria-label="Zaxira matni"></textarea>
+      <div class="msg" id="bakMsg" role="status"></div>
+      <button class="btn warn" id="bakConfirm" hidden>Ha, shu fayldagi ma'lumot bilan almashtirish</button>
+    </section>
+  </div>
+
+  <!-- ===== QARZLAR ===== -->
+  <div class="tab" id="tab-debt" hidden>
+    <div class="debtTotals">
+      <div class="dt in"><span class="label" style="color:inherit">Menga qaytarishadi</span><span class="v num" id="d-in">0</span><span class="s" id="d-in-s"></span></div>
+      <div class="dt out"><span class="label" style="color:inherit">Men qaytaraman</span><span class="v num" id="d-out">0</span><span class="s" id="d-out-s"></span></div>
+    </div>
+
+    <section class="card" aria-labelledby="h-dadd">
+      <h2 id="h-dadd">Yangi qarz</h2>
+      <div class="seg" role="group" aria-label="Qarz turi">
+        <button id="dirIn" class="on">Men qarz berdim</button>
+        <button id="dirOut">Men qarz oldim</button>
+      </div>
+      <div class="formGrid">
+        <input class="full" id="dWho" placeholder="Kim: Alisher" aria-label="Kim">
+        <input id="dAmt" placeholder="Summa: 200 ming" aria-label="Summa">
+        <label class="hint" style="display:grid">Qaytarish sanasi<input type="date" id="dDue"></label>
+        <input class="full" id="dNote" placeholder="Izoh (ixtiyoriy)" aria-label="Izoh">
+        <button class="btn full" id="dAdd">Qarzni yozib qo'yish</button>
+      </div>
+      <div class="msg" id="dMsg" role="status"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-dl">
+      <h2 id="h-dl">Ochiq qarzlar</h2>
+      <div class="debts" id="debts"></div>
+      <details id="paidWrap"><summary id="paidSum">Yopilgan qarzlar</summary><div class="debts" id="debtsPaid" style="margin-top:10px"></div></details>
+    </section>
+  </div>
+</div>
+
+<nav class="tabs" aria-label="Bo'limlar">
+  <div class="in">
+    <button data-tab="main" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Asosiy</button>
+    <button data-tab="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Rejalar</button>
+    <button data-tab="debt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg><span>Qarzlar<span class="badge" id="debtBadge" hidden></span></span></button>
+  </div>
+</nav>
+
+<script>
+// ---------- Kategoriyalar, kalit so'zlar va ranglar ----------
+const CATS = {
+  "Oziq-ovqat": ["non","sut","go'sht","gosht","tuxum","meva","sabzavot","guruch","yog'","yog","shakar","choy","qahva","kofe","obed","tushlik","ovqat","nonushta","kechki","osh","somsa","shashlik","lag'mon","pishiriq","suv","cola","kola","magazin","bozor","market","korzinka","makro","shirinlik","kafe","restoran","burger","lavash","pizza"],
+  "Transport": ["taksi","taxi","yandex","avtobus","metro","benzin","propan","metan","gaz","yo'l","yol","mashina","moy","parkovka"],
+  "Uy-kommunal": ["ijara","kvartira","svet","elektr","issiq","kommunal","musor","uy","remont"],
+  "Aloqa va internet": ["internet","telefon","paynet","uzmobile","beeline","ucell","mobiuz","balans","tarif"],
+  "Obunalar": ["claude","cloude","chatgpt","gpt","netflix","spotify","youtube","obuna","icloud","google one","telegram premium"],
+  "Kiyim": ["kiyim","oyoq","krossovka","ko'ylak","shim","kurtka","poyabzal"],
+  "Sog'liq": ["dori","apteka","shifokor","doktor","klinika","stomatolog","vitamin"],
+  "Ta'lim": ["kitob","kurs","daftar","ruchka","dars","repetitor","o'qish","parallel"],
+  "Dam olish": ["kino","o'yin","oyin","sayohat","sovg'a","sovga","tug'ilgan","futbol","zal","sport"],
+  "Boshqa": []
+};
+const CAT_NAMES = Object.keys(CATS);
+const color = c => "var(--c" + ((CAT_NAMES.indexOf(c) < 0 ? CAT_NAMES.length - 1 : CAT_NAMES.indexOf(c)) + 1) + ")";
+function guessCat(name) {
+  const t = name.toLowerCase();
+  for (const c of CAT_NAMES) if (CATS[c].some(k => t.includes(k))) return c;
+  return "Boshqa";
+}
+
+// ---------- Yordamchi funksiyalar ----------
+const $ = id => document.getElementById(id);
+const MONTHS = ["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentabr","Oktabr","Noyabr","Dekabr"];
+const WD = ["Du","Se","Ch","Pa","Ju","Sh","Ya"];
+const pad = n => String(n).padStart(2, "0");
+const ymd = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+const parseYmd = s => new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+const fmt = n => Math.round(n).toLocaleString("ru-RU").replace(/ /g, " ");
+const short = n => { const a = Math.abs(n), s = n < 0 ? "-" : ""; return s + (a >= 1e6 ? (a / 1e6).toFixed(a >= 1e7 ? 0 : 1).replace(".0", "") + " mln" : a >= 1000 ? Math.round(a / 1000) + "k" : String(Math.round(a))); };
+const daysIn = (y, m) => new Date(y, m + 1, 0).getDate();
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const mkey = (y, m) => y + "-" + pad(m + 1);
+const uid8 = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const sum = arr => arr.reduce((a, i) => a + (Number(i.amount) || 0), 0);
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
+// "taksi 15 ming" -> {name:"taksi", amount:15000}
+function parseLine(line) {
+  const s = line.trim();
+  if (!s) return null;
+  const m = s.match(/(\d[\d\s.,]*)\s*(ming|k|mln|million)?\s*(so'm|som|sum|сум)?\s*$/i) || s.match(/^(\d[\d\s.,]*)\s*(ming|k|mln|million)?\s*(so'm|som|sum)?\s+/i);
+  if (!m) return { bad: true, raw: s };
+  let n = parseFloat(m[1].replace(/\s/g, "").replace(",", "."));
+  const mult = (m[2] || "").toLowerCase();
+  if (mult === "ming" || mult === "k") n *= 1000;
+  if (mult === "mln" || mult === "million") n *= 1e6;
+  const name = s.replace(m[0], "").trim() || "Xarid";
+  if (!(n > 0)) return { bad: true, raw: s };
+  return { name, amount: Math.round(n) };
+}
+const amountOnly = s => { const x = parseLine("x " + s); return x && !x.bad ? x.amount : 0; };
+
+// ---------- Ma'lumot ----------
+let items = [];      // qo'lda kiritilgan xarajatlar: {id, date, name, amount, cat}
+let budgets = {};    // { "2026-10": { salary, limits: {kitob:150000} } }
+let settings = { recurring: [], debts: [], goals: [], dismissed: false };
+// recurring: {id, name, amount, cat, freq:"day"|"work"|"month", day, start, end, skips:[]}
+// debts: {id, who, amount, dir:"in"|"out", due, note, paid, created}
+// goals: {id, name, target, deps:[{date, amount}]}
+let demo = false, selDay = 0, col = null;
+const LS = "harajat-daftari-v1", LSB = "harajat-daftari-limit-v1", LSS = "harajat-daftari-sozlama-v1";
+
+function setSave(ok, text) { $("save").className = "save" + (ok ? " ok" : ""); $("save").lastElementChild.textContent = text; }
+function normBudgets() { for (const k in budgets) if (!budgets[k] || !("limits" in budgets[k])) budgets[k] = { salary: 0, limits: budgets[k] || {} }; }
+function normSettings(s) { s = s || {}; return { recurring: s.recurring || [], debts: s.debts || [], goals: s.goals || [], dismissed: !!s.dismissed }; }
+function loadLocal() {
+  try { items = JSON.parse(localStorage.getItem(LS) || "[]"); } catch (e) { items = []; }
+  try { budgets = JSON.parse(localStorage.getItem(LSB) || "{}"); } catch (e) { budgets = {}; }
+  try { settings = normSettings(JSON.parse(localStorage.getItem(LSS) || "{}")); } catch (e) { settings = normSettings(); }
+  normBudgets();
+}
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify(items)); localStorage.setItem(LSB, JSON.stringify(budgets)); localStorage.setItem(LSS, JSON.stringify(settings)); } catch (e) {} }
+
+async function initStore() {
+  let db = null, user = null;
+  try { if (window.claude && claude.use) { [db, user] = await Promise.all([claude.use("db"), claude.use("user")]); } } catch (e) {}
+  const uid = user ? await user.id() : null;
+  if (db && uid) {
+    col = db.collection("data/users/" + uid);
+    setSave(true, "Hisobingizda saqlanadi");
+    col.onSnapshot(snap => {
+      const exp = [], bud = {}; let st = null;
+      snap.docs.forEach(d => {
+        const x = d.data();
+        if (x.type === "budget") bud[x.month] = { salary: x.salary || 0, limits: x.limits || {} };
+        else if (x.type === "settings") st = x;
+        else exp.push({ id: d.id, ...x });
+      });
+      budgets = bud; settings = normSettings(st);
+      if (demo && !exp.length) { render(); return; }
+      if (exp.length) demo = false;
+      items = exp;
+      render();
+    }, () => { col = null; loadLocal(); setSave(false, "Shu qurilmada saqlanadi"); render(); });
+  } else {
+    loadLocal();
+    setSave(false, "Shu qurilmada saqlanadi");
+    render();
+  }
+}
+
+async function addItems(list) {
+  if (demo) { demo = false; items = []; }
+  for (const it of list) {
+    if (col) await col.add(it);
+    else items.push({ id: uid8(), ...it });
+  }
+  if (!col) { saveLocal(); render(); }
+}
+async function removeItem(id) {
+  if (id.startsWith("r:")) {                      // doimiy to'lovning bitta kunini o'tkazib yuborish
+    const [, rid, date] = id.split(":");
+    const r = settings.recurring.find(x => x.id === rid);
+    if (r) { r.skips = [...(r.skips || []), date]; await saveSettings(); }
+    return;
+  }
+  if (demo) { items = items.filter(i => i.id !== id); render(); return; }
+  if (col) await col.doc(id).delete();
+  else { items = items.filter(i => i.id !== id); saveLocal(); render(); }
+}
+async function saveMonth(key, patch) {
+  const cur = budgets[key] || { salary: 0, limits: {} };
+  const next = { salary: cur.salary || 0, limits: cur.limits || {}, ...patch };
+  budgets[key] = next;
+  if (col) await col.doc("budget-" + key).set({ type: "budget", month: key, salary: next.salary, limits: next.limits });
+  else saveLocal();
+  render();
+}
+const saveBudgets = (key, limits) => saveMonth(key, { limits });
+async function saveSettings() {
+  if (col) await col.doc("settings").set({ type: "settings", ...JSON.parse(JSON.stringify(settings)) });
+  else saveLocal();
+  render();
+}
+function salaryFor(key) {
+  if (budgets[key] && budgets[key].salary) return { v: budgets[key].salary, own: true };
+  const prev = Object.keys(budgets).filter(k => k < key && budgets[k].salary).sort().pop();
+  return prev ? { v: budgets[prev].salary, own: false } : { v: 0, own: false };
+}
+
+// ---------- Doimiy to'lovlar: har kun uchun hisoblab chiqariladi (saqlanmaydi) ----------
+function recOn(r, d) {
+  const ds = ymd(d);
+  if (ds < r.start || (r.end && ds > r.end) || (r.skips || []).includes(ds)) return false;
+  if (r.freq === "day") return true;
+  if (r.freq === "work") return d.getDay() >= 1 && d.getDay() <= 5;
+  return d.getDate() === Math.min(r.day || 1, daysIn(d.getFullYear(), d.getMonth()));
+}
+// from..to oralig'idagi doimiy to'lovlar
+function recItems(from, to) {
+  const out = [];
+  for (const r of settings.recurring) {
+    for (let d = new Date(from); d <= to; d = addDays(d, 1)) {
+      if (recOn(r, d)) out.push({ id: "r:" + r.id + ":" + ymd(d), date: ymd(d), name: r.name, amount: r.amount, cat: r.cat, rec: true });
+    }
+  }
+  return out;
+}
+const todayD = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+// Oy xarajatlari: qo'lda yozilganlar + bugungacha bo'lgan doimiy to'lovlar
+function monthItems(y, m) {
+  const p = mkey(y, m), end = new Date(y, m, daysIn(y, m));
+  const to = end < todayD() ? end : todayD();
+  const rec = new Date(y, m, 1) <= to ? recItems(new Date(y, m, 1), to) : [];
+  return items.filter(i => i.date && i.date.startsWith(p)).concat(rec);
+}
+function savedIn(key) { return settings.goals.reduce((a, g) => a + sum((g.deps || []).filter(x => x.date.startsWith(key))), 0); }
+
+function spentFor(key, list) {
+  const k = key.toLowerCase();
+  return sum(list.filter(i => (i.cat || "").toLowerCase() === k || String(i.name).toLowerCase().includes(k)));
+}
+function budgetRows(list) {
+  const lim = (budgets[mkey(vy, vm)] || {}).limits || {};
+  return Object.entries(lim).map(([k, v]) => {
+    const spent = spentFor(k, list), p = v ? spent / v : 0;
+    return { k, limit: v, spent, p, level: p >= 1 ? "red" : p >= 0.8 ? "amber" : "ok" };
+  }).sort((a, b) => b.p - a.p);
+}
+function debtStatus(d) {
+  if (!d.due) return { cls: "", text: "Muddatsiz" };
+  const days = Math.round((parseYmd(d.due) - todayD()) / 864e5);
+  if (days < 0) return { cls: "late", text: -days + " kun kechikdi", late: true };
+  if (days === 0) return { cls: "soon", text: "Bugun qaytarish kerak", soon: true };
+  if (days <= 3) return { cls: "soon", text: days + " kun qoldi", soon: true };
+  return { cls: "", text: (+d.due.slice(8)) + "-" + MONTHS[+d.due.slice(5, 7) - 1].toLowerCase() + "gacha" };
+}
+
+// ---------- Ko'rinish ----------
+const now = new Date();
+let vy = now.getFullYear(), vm = now.getMonth(), tab = "main";
+
+function render() {
+  const list = monthItems(vy, vm);
+  const total = sum(list);
+  const key = mkey(vy, vm);
+  $("mlabel").textContent = MONTHS[vm] + " " + vy;
+  $("mtotal").textContent = fmt(total);
+  $("monthBar").hidden = tab === "debt";
+  $("today").textContent = fmt(sum(monthItems(now.getFullYear(), now.getMonth()).filter(i => i.date === ymd(now)))) + " so'm";
+  $("demoBanner").hidden = !demo;
+
+  const nDays = daysIn(vy, vm);
+  const daily = Array(nDays).fill(0);
+  list.forEach(i => { const d = +i.date.slice(8, 10); if (d >= 1 && d <= nDays) daily[d - 1] += +i.amount; });
+  const isCur = vy === now.getFullYear() && vm === now.getMonth();
+  const passed = isCur ? now.getDate() : nDays;
+  let maxD = 0; daily.forEach((v, i) => { if (v > daily[maxD]) maxD = i; });
+
+  $("k-avg").textContent = fmt(total / passed);
+  $("k-avg-s").textContent = isCur ? passed + " kun hisobida" : "oy bo'yicha";
+  $("k-max").textContent = fmt(daily[maxD] || 0);
+  $("k-max-s").textContent = daily[maxD] ? (maxD + 1) + "-" + MONTHS[vm].toLowerCase() : "hali yo'q";
+  $("k-cnt").textContent = list.length;
+  $("k-cnt-s").textContent = list.length ? "o'rtacha " + fmt(total / list.length) + " dan" : "xarid";
+  const py = vm === 0 ? vy - 1 : vy, pm = vm === 0 ? 11 : vm - 1;
+  const prevTotal = sum(monthItems(py, pm));
+  if (prevTotal > 0) {
+    const pct = Math.round((total - prevTotal) / prevTotal * 100);
+    $("k-prev").innerHTML = '<span class="' + (pct > 0 ? "up" : "down") + '">' + (pct > 0 ? "+" : "") + pct + "%</span>";
+    $("k-prev-s").textContent = MONTHS[pm] + ": " + fmt(prevTotal);
+  } else { $("k-prev").textContent = "—"; $("k-prev-s").textContent = "o'tgan oyda ma'lumot yo'q"; }
+
+  const rows = budgetRows(list);
+  const sal = salaryFor(key);
+  const saved = savedIn(key);
+  drawAlerts(rows);
+  drawSalary(sal, total, saved, list, rows, isCur, nDays);
+  drawForecast(sal, total, saved, isCur, nDays);
+  drawBudgets(rows, py, pm);
+  drawDonut(list, total, sal.v, saved);
+  drawCal(daily, maxD, isCur, list);
+  drawDays(list);
+  drawRecs();
+  drawGoals();
+  drawDebts();
+}
+
+function drawAlerts(rows) {
+  let h = rows.filter(r => r.level !== "ok").map(r => {
+    const name = cap(r.k);
+    if (r.level === "red") {
+      const over = r.spent - r.limit;
+      return '<div class="alert red"><b>' + esc(name) + ' olmang!</b><span>' +
+        (over > 0 ? "Limitdan " + fmt(over) + " so'm oshib ketdi" : "Bu oyga ajratilgan pul tugadi") +
+        ': <span class="num">' + fmt(r.spent) + " / " + fmt(r.limit) + "</span></span></div>";
+    }
+    return '<div class="alert amber"><b>' + esc(name) + "ga ehtiyot bo'ling</b><span>Faqat " + fmt(r.limit - r.spent) + " so'm qoldi</span></div>";
+  }).join("");
+  settings.debts.filter(d => !d.paid).forEach(d => {
+    const st = debtStatus(d);
+    if (!st.late && !st.soon) return;
+    const what = d.dir === "out" ? esc(d.who) + "ga " + fmt(d.amount) + " so'm qaytarish" : esc(d.who) + " " + fmt(d.amount) + " so'm qaytarishi";
+    h += '<div class="alert ' + (st.late ? "red" : "amber") + '"><b>Qarz: ' + what + '</b><span>' + st.text + "</span></div>";
+  });
+  $("alerts").innerHTML = h;
+}
+
+function drawSalary(sal, total, saved, list, rows, isCur, nDays) {
+  if (!sal.v) {
+    $("s-in").textContent = "—"; $("s-out").textContent = fmt(total); $("s-left").textContent = "—";
+    $("s-leftBox").className = "left"; $("s-track").innerHTML = "";
+    $("s-hint").textContent = "Oyligingizni kiriting, shunda qancha qolganini ko'rsatib turaman.";
+    $("salForm").hidden = false; $("salEdit").hidden = true;
+    return;
+  }
+  $("salEdit").hidden = false;
+  const left = sal.v - total - saved;
+  $("s-in").textContent = fmt(sal.v);
+  $("s-out").textContent = fmt(total);
+  $("s-left").textContent = fmt(left);
+  $("s-leftBox").className = "left" + (left < 0 ? " neg" : "");
+  const by = {}; list.forEach(i => { const c = CAT_NAMES.includes(i.cat) ? i.cat : "Boshqa"; by[c] = (by[c] || 0) + +i.amount; });
+  const base = Math.max(sal.v, total + saved);
+  $("s-track").innerHTML = Object.entries(by).sort((a, b) => b[1] - a[1]).map(([c, v]) => '<span style="width:' + (v / base * 100).toFixed(2) + '%;background:' + color(c) + '"></span>').join("") +
+    (saved ? '<span style="width:' + (saved / base * 100).toFixed(2) + '%;background:var(--save)"></span>' : "");
+  const reserved = rows.reduce((a, r) => a + Math.max(0, r.limit - r.spent), 0);
+  const parts = [];
+  if (!sal.own) parts.push("O'tgan oydagi oylik olindi");
+  if (saved) parts.push("jamg'armaga " + fmt(saved) + " so'm");
+  if (left < 0) parts.push("oylikdan " + fmt(-left) + " so'm ko'p ketdi");
+  else if (isCur) {
+    const upcoming = sum(recItems(addDays(todayD(), 1), new Date(vy, vm, nDays)));
+    const free = left - reserved - upcoming, daysLeft = nDays - now.getDate() + 1;
+    parts.push("oy oxirigacha erkin pul kuniga " + fmt(Math.max(0, free) / daysLeft) + " so'm");
+  }
+  $("s-hint").textContent = parts.join(" · ");
+  $("salForm").hidden = true;
+}
+
+// Haftalik solishtiruv + oy oxiri bashorati
+function drawForecast(sal, total, saved, isCur, nDays) {
+  const t = todayD(), wd = (t.getDay() + 6) % 7, mon = addDays(t, -wd);
+  const all = monthItems(t.getFullYear(), t.getMonth()).concat(t.getDate() <= 7 ? monthItems(t.getMonth() === 0 ? t.getFullYear() - 1 : t.getFullYear(), (t.getMonth() + 11) % 12) : []);
+  const byDate = {}; all.forEach(i => byDate[i.date] = (byDate[i.date] || 0) + +i.amount);
+  const cur = [], prev = [];
+  for (let i = 0; i < 7; i++) { cur.push(i <= wd ? byDate[ymd(addDays(mon, i))] || 0 : null); prev.push(byDate[ymd(addDays(mon, i - 7))] || 0); }
+  const curSum = cur.reduce((a, v) => a + (v || 0), 0), prevSame = prev.slice(0, wd + 1).reduce((a, v) => a + v, 0);
+  const mx = Math.max(1, ...cur.map(v => v || 0), ...prev);
+  let h = '<div class="weekbars" aria-label="Bu hafta va o\'tgan hafta">' + WD.map((w, i) =>
+    '<div><div class="pair"><b class="prev" style="height:' + (prev[i] / mx * 100).toFixed(0) + '%" title="O\'tgan hafta: ' + fmt(prev[i]) + '"></b><b style="height:' + ((cur[i] || 0) / mx * 100).toFixed(0) + '%;' + (cur[i] === null ? "opacity:0" : "") + '" title="Bu hafta: ' + fmt(cur[i] || 0) + '"></b></div><span' + (i === wd ? ' style="color:var(--ink);font-weight:700"' : "") + ">" + w + "</span></div>").join("") + "</div>";
+  h += '<div class="legend"><span><i style="background:var(--line)"></i>O\'tgan hafta</span><span><i style="background:var(--accent)"></i>Bu hafta</span></div>';
+  h += '<div class="line"><span>Bu hafta (Du–' + WD[wd] + ')</span><b class="num">' + fmt(curSum) + "</b></div>";
+  if (prevSame > 0) {
+    const pct = Math.round((curSum - prevSame) / prevSame * 100);
+    h += '<div class="line"><span>O\'tgan haftaning shu kunlariga nisbatan</span><b class="num ' + (pct > 0 ? "up" : "down") + '">' + (pct > 0 ? "+" : "") + pct + "%</b></div>";
+  }
+  // Bu haftaning eng ko'p kategoriyasi
+  const wcat = {}; all.filter(i => i.date >= ymd(mon) && i.date <= ymd(t)).forEach(i => wcat[i.cat || "Boshqa"] = (wcat[i.cat || "Boshqa"] || 0) + +i.amount);
+  const topc = Object.entries(wcat).sort((a, b) => b[1] - a[1])[0];
+  if (topc) h += '<div class="line"><span>Ko\'p ketgani</span><b>' + esc(topc[0]) + ' · <span class="num">' + fmt(topc[1]) + "</span></b></div>";
+
+  if (isCur) {
+    // oxirgi 7 kundagi qo'lda yozilgan xarajatlar o'rtachasi
+    const from = ymd(addDays(t, -6)), manual = items.filter(i => i.date >= from && i.date <= ymd(t));
+    const span = Math.min(7, now.getDate());
+    const perDay = sum(manual) / span;
+    const upcoming = sum(recItems(addDays(t, 1), new Date(vy, vm, nDays)));
+    const restDays = nDays - now.getDate();
+    const forecast = total + perDay * restDays + upcoming;
+    h += '<div class="line"><span>Oy oxirigacha taxminan sarflanadi</span><b class="num">' + fmt(forecast) + "</b></div>";
+    if (sal.v) {
+      const end = sal.v - forecast - saved;
+      h += end >= 0
+        ? '<div class="verdict ok">Shu tezlikda oy oxirida taxminan ' + fmt(end) + " so'm qoladi</div>"
+        : '<div class="verdict bad">Shu tezlikda oy oxirida ' + fmt(-end) + " so'm yetmay qoladi. Kuniga " + fmt(Math.max(0, (sal.v - saved - total - upcoming)) / Math.max(1, restDays)) + " so'mdan oshirmang</div>";
+    }
+    h += '<div class="hint">Bashorat: oxirgi ' + span + " kunlik o'rtacha (" + fmt(perDay) + " so'm) + qolgan doimiy to'lovlar (" + fmt(upcoming) + " so'm).</div>";
+  }
+  $("forecast").innerHTML = h;
+}
+
+function drawBudgets(rows, py, pm) {
+  if (!rows.length) {
+    const prev = (budgets[mkey(py, pm)] || {}).limits;
+    $("budgets").innerHTML = '<div class="hint">Bu oy uchun hali pul ajratilmagan.</div>' +
+      (prev && Object.keys(prev).length ? '<button class="btn ghost" id="copyBud">' + MONTHS[pm] + " limitlarini ko'chirish</button>" : "");
+    const b = $("copyBud"); if (b) b.onclick = () => saveBudgets(mkey(vy, vm), { ...prev });
+    return;
+  }
+  $("budgets").innerHTML = rows.map(r => {
+    const left = r.limit - r.spent;
+    const sub = r.level === "red" ? (left < 0 ? fmt(-left) + " so'm oshdi" : "Tugadi") : fmt(left) + " so'm qoldi";
+    return '<div class="bud ' + r.level + '"><div class="top"><span class="name">' + esc(cap(r.k)) + '</span><span class="num">' + fmt(r.spent) + " / " + fmt(r.limit) + '</span><button class="del" data-bud="' + esc(r.k) + '" aria-label="Limitni o\'chirish">×</button></div>' +
+      '<div class="track"><div class="fill" style="width:' + Math.min(100, r.p * 100).toFixed(1) + '%"></div></div><div class="sub">' + sub + "</div></div>";
+  }).join("");
+}
+
+function drawDonut(list, total, salary, saved) {
+  const by = {};
+  list.forEach(i => { const c = CAT_NAMES.includes(i.cat) ? i.cat : "Boshqa"; by[c] = (by[c] || 0) + +i.amount; });
+  const rows = Object.entries(by).sort((a, b) => b[1] - a[1]).map(([c, v]) => [c, v, color(c)]);
+  if (saved) rows.push(["Jamg'arma", saved, "var(--save)"]);
+  const used = total + saved, left = salary - used;
+  const base = Math.max(salary || 0, used);
+  const R = 70, C = 2 * Math.PI * R, gap = rows.length > 1 ? 2 : 0;
+  let s = '<svg viewBox="0 0 180 180" role="img" aria-label="Pul nimalarga ketgani"><g transform="rotate(-90 90 90)">';
+  s += '<circle cx="90" cy="90" r="' + R + '" fill="none" stroke="var(--line)" stroke-width="24"/>';
+  let off = 0;
+  rows.forEach(([c, v, col]) => {
+    const len = base ? v / base * C : 0, seg = Math.max(0, len - gap);
+    s += '<circle cx="90" cy="90" r="' + R + '" fill="none" stroke="' + col + '" stroke-width="24" stroke-dasharray="' + seg.toFixed(2) + " " + (C - seg).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"><title>' + esc(c) + ": " + fmt(v) + " so'm</title></circle>";
+    off += len;
+  });
+  const center = salary ? short(Math.max(0, left)) : short(total);
+  const sub = salary ? (left < 0 ? "oylik tugadi" : "so'm qoldi") : "so'm jami";
+  s += '</g><text class="ct" x="90" y="92" text-anchor="middle">' + center + '</text><text class="cs" x="90" y="110" text-anchor="middle">' + sub + '</text></svg>';
+  $("donut").innerHTML = s;
+  let legend = rows.map(([c, v, col]) =>
+    '<div class="cat"><i style="background:' + col + '"></i><span>' + esc(c) + ' <span class="p">' + Math.round(v / base * 100) + '%</span></span><span class="num">' + fmt(v) + "</span></div>").join("");
+  if (salary && left > 0) legend += '<div class="cat"><i style="background:var(--line)"></i><span>Qoldi <span class="p">' + Math.round(left / base * 100) + '%</span></span><span class="num">' + fmt(left) + "</span></div>";
+  $("cats").innerHTML = legend || '<div class="hint">Bu oyda hali xarajat yo\'q.</div>';
+}
+
+function drawCal(daily, maxD, isCur, list) {
+  const first = (new Date(vy, vm, 1).getDay() + 6) % 7;
+  const max = Math.max(...daily, 1);
+  let s = WD.map(w => '<div class="wd">' + w + "</div>").join("");
+  for (let i = 0; i < first; i++) s += "<div></div>";
+  daily.forEach((v, i) => {
+    const d = i + 1, pct = v ? Math.round(12 + v / max * 63) : 0;
+    const cls = [v ? "has" : "", isCur && d === now.getDate() ? "today" : "", i === maxD && v ? "max" : "", d === selDay ? "sel" : "", isCur && d > now.getDate() ? "future" : ""].join(" ");
+    const bg = v ? ' style="background:color-mix(in srgb, var(--accent) ' + pct + '%, var(--bg))"' : "";
+    s += '<button class="' + cls + '" data-day="' + d + '"' + bg + ' aria-label="' + d + "-kun: " + fmt(v) + " so'm\"><span class=\"d\">" + d + '</span><span class="a">' + (v ? short(v) : "") + "</span></button>";
+  });
+  $("cal").innerHTML = s;
+  if (!selDay) { $("dayDetail").innerHTML = '<div class="hint">Kunni bossangiz, o\'sha kungi xaridlar shu yerda chiqadi.</div>'; return; }
+  const ds = mkey(vy, vm) + "-" + pad(selDay), arr = list.filter(i => i.date === ds);
+  $("dayDetail").innerHTML = '<div class="r"><b>' + selDay + "-" + MONTHS[vm].toLowerCase() + '</b><b class="num">' + fmt(sum(arr)) + " so'm</b></div>" +
+    (arr.length ? arr.map(i => '<div class="r"><span>' + esc(i.name) + (i.rec ? ' <span class="hint">· doimiy</span>' : "") + '</span><span class="num">' + fmt(i.amount) + "</span></div>").join("") : '<div class="hint">Bu kunda xarid yo\'q.</div>');
+}
+
+function drawDays(list) {
+  if (!list.length) {
+    $("days").innerHTML = '<div class="empty"><div>Bu oyda hali yozuv yo\'q. Yuqoriga birinchi xaridingizni yozing.</div>' + (!items.length && !settings.recurring.length ? '<button class="btn ghost" id="demoBtn">Namuna bilan ko\'rish</button>' : "") + "</div>";
+    const b = $("demoBtn"); if (b) b.onclick = loadDemo;
+    return;
+  }
+  const g = {};
+  list.forEach(i => (g[i.date] = g[i.date] || []).push(i));
+  $("days").innerHTML = Object.keys(g).sort().reverse().map(d => {
+    const arr = g[d];
+    return '<div class="day"><h3><span>' + (+d.slice(8)) + "-" + MONTHS[+d.slice(5, 7) - 1].toLowerCase() + '</span><span class="num">' + fmt(sum(arr)) + " so'm</span></h3>" +
+      arr.map(i => '<div class="item"><div class="n">' + esc(i.name) + '<div class="c"><i style="background:' + color(i.cat) + '"></i>' + esc(i.cat || "Boshqa") + (i.rec ? " · doimiy" : "") + '</div></div><span class="num">' + fmt(i.amount) + '</span><button class="del" data-id="' + esc(i.id) + '" aria-label="O\'chirish">×</button></div>').join("") + "</div>";
+  }).join("");
+}
+
+const FREQ = { day: "har kuni", work: "ish kunlari", month: "har oy" };
+const SUGGEST = [
+  { name: "Yo'lkira", amount: 27000, freq: "day", cat: "Transport" },
+  { name: "Parallel muhit", amount: 67000, freq: "month", day: 1, cat: "Ta'lim" },
+  { name: "Claude", amount: 260000, freq: "month", day: 1, cat: "Obunalar" }
+];
+function drawRecs() {
+  const active = settings.recurring.filter(r => !r.end || r.end >= ymd(todayD()));
+  // Suhbatda aytilgan to'lovlarni bir bosishda qo'shish taklifi
+  const missing = SUGGEST.filter(s => !settings.recurring.some(r => r.name.toLowerCase() === s.name.toLowerCase()));
+  $("recSuggest").innerHTML = !settings.dismissed && missing.length ? '<div class="suggest"><b style="font-size:14px">Siz aytgan doimiy to\'lovlar</b>' +
+    missing.map(s => '<div class="r"><span>' + esc(s.name) + ' <span class="hint">· ' + FREQ[s.freq] + '</span></span><span class="num">' + fmt(s.amount) + "</span></div>").join("") +
+    '<div class="row"><button class="btn small" id="sugAdd">Hammasini qo\'shish</button><button class="btn small ghost" id="sugNo">Kerak emas</button></div><div class="hint">Oylik to\'lovlar har oyning 1-kuniga yoziladi, keyin o\'zgartirasiz.</div></div>' : "";
+  if ($("sugAdd")) $("sugAdd").onclick = () => { missing.forEach(s => settings.recurring.push({ id: uid8(), ...s, day: s.day || 1, start: s.freq === "month" ? mkey(now.getFullYear(), now.getMonth()) + "-01" : ymd(todayD()), skips: [] })); saveSettings(); };
+  if ($("sugNo")) $("sugNo").onclick = () => { settings.dismissed = true; saveSettings(); };
+  const monthTotal = active.reduce((a, r) => a + r.amount * (r.freq === "day" ? 30 : r.freq === "work" ? 22 : 1), 0);
+  $("recs").innerHTML = active.length ? active.map(r =>
+    '<div class="lineItem"><div class="n">' + esc(r.name) + '<div class="c">' + FREQ[r.freq] + (r.freq === "month" ? ", " + (r.day || 1) + "-kuni" : "") + " · " + esc(r.cat) + '</div></div><span class="num">' + fmt(r.amount) + '</span><button class="del" data-rec="' + r.id + '" aria-label="To\'xtatish">×</button></div>').join("") +
+    '<div class="hint" style="padding-top:6px">Oyiga taxminan ' + fmt(monthTotal) + " so'm doimiy to'lovlarga ketadi. × bosilsa to'lov to'xtaydi, eski yozuvlar qoladi.</div>"
+    : '<div class="hint">Hali doimiy to\'lov yo\'q.</div>';
+}
+
+function ring(p, colr) {
+  const R = 26, C = 2 * Math.PI * R, l = Math.min(1, p) * C;
+  return '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="' + R + '" fill="none" stroke="var(--line)" stroke-width="7"/><circle cx="32" cy="32" r="' + R + '" fill="none" stroke="' + colr + '" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + l.toFixed(1) + " " + C.toFixed(1) + '" transform="rotate(-90 32 32)"/><text class="ring-t" x="32" y="36" text-anchor="middle">' + Math.round(p * 100) + "%</text></svg>";
+}
+function drawGoals() {
+  if (!settings.goals.length) { $("goals").innerHTML = '<div class="hint">Nimaga pul yig\'yapsiz? Masalan: "noutbuk 8 mln".</div>'; return; }
+  $("goals").innerHTML = settings.goals.map(g => {
+    const saved = sum(g.deps || []), p = g.target ? saved / g.target : 0, left = g.target - saved;
+    // oylik o'rtacha qo'yilgan pul bo'yicha qancha vaqt qolgani
+    const months = new Set((g.deps || []).map(x => x.date.slice(0, 7))).size;
+    const perMonth = months ? saved / months : 0;
+    const eta = left <= 0 ? "Maqsadga yetdingiz!" : perMonth ? "Shu tezlikda yana ~" + Math.ceil(left / perMonth) + " oy" : "Hali pul qo'yilmagan";
+    return '<div class="goal">' + ring(p, left <= 0 ? "var(--accent)" : "var(--save)") +
+      '<div class="info"><div class="gn"><span>' + esc(cap(g.name)) + '</span><button class="del" data-goal="' + g.id + '" aria-label="Maqsadni o\'chirish">×</button></div>' +
+      '<div class="gs"><span class="num">' + fmt(saved) + " / " + fmt(g.target) + "</span> · " + eta + "</div>" +
+      '<div class="addRow"><input id="gi-' + g.id + '" placeholder="200 ming" aria-label="Qancha qo\'ydingiz"><button class="btn small" data-gadd="' + g.id + '">Qo\'ydim</button><button class="btn small ghost" data-gtake="' + g.id + '">Oldim</button></div></div></div>';
+  }).join("");
+}
+
+const AV = ["var(--c1)", "var(--c2)", "var(--c4)", "var(--c5)", "var(--c7)", "var(--c3)"];
+function debtCard(d) {
+  const st = d.paid ? { cls: "", text: "Qaytarildi" } : debtStatus(d);
+  const av = AV[[...d.who].reduce((a, c) => a + c.charCodeAt(0), 0) % AV.length];
+  return '<div class="debt ' + d.dir + (d.paid ? " paid" : "") + '"><div class="av" style="background:' + av + '">' + esc(d.who.trim().charAt(0).toUpperCase()) + '</div>' +
+    '<div style="min-width:0"><div class="who">' + esc(d.who) + '</div><div class="meta ' + st.cls + '">' + (d.dir === "in" ? "Menga qaytaradi" : "Men qaytaraman") + " · " + st.text + "</div>" + (d.note ? '<div class="meta">' + esc(d.note) + "</div>" : "") + "</div>" +
+    '<div class="amt"><span class="num">' + fmt(d.amount) + "</span>" +
+    (d.paid ? '<button class="del" data-debtdel="' + d.id + '" aria-label="O\'chirish">×</button>' : '<button class="btn small ghost" data-paid="' + d.id + '">Qaytarildi</button>') + "</div></div>";
+}
+function drawDebts() {
+  const open = settings.debts.filter(d => !d.paid), paid = settings.debts.filter(d => d.paid);
+  const tin = open.filter(d => d.dir === "in"), tout = open.filter(d => d.dir === "out");
+  $("d-in").textContent = fmt(sum(tin)); $("d-in-s").textContent = tin.length + " kishi";
+  $("d-out").textContent = fmt(sum(tout)); $("d-out-s").textContent = tout.length + " kishi";
+  open.sort((a, b) => (a.due || "9999") < (b.due || "9999") ? -1 : 1);
+  $("debts").innerHTML = open.length ? open.map(debtCard).join("") : '<div class="hint">Ochiq qarz yo\'q.</div>';
+  $("paidWrap").hidden = !paid.length;
+  $("paidSum").textContent = "Yopilgan qarzlar (" + paid.length + ")";
+  $("debtsPaid").innerHTML = paid.map(debtCard).join("");
+  const urgent = open.filter(d => { const s = debtStatus(d); return s.late || s.soon; }).length;
+  $("debtBadge").hidden = !urgent; $("debtBadge").textContent = urgent;
+}
+
+// ---------- Tugmalar ----------
+// O'chirish: birinchi bosish so'raydi, ikkinchisi bajaradi
+document.addEventListener("click", e => {
+  const b = e.target.closest(".del"); if (!b) return;
+  if (!b.classList.contains("arm")) {
+    document.querySelectorAll(".del.arm").forEach(x => { x.classList.remove("arm"); x.textContent = "×"; });
+    b.classList.add("arm"); b.textContent = b.dataset.rec ? "To'xtatish" : "O'chirish";
+    return;
+  }
+  if (b.dataset.id) removeItem(b.dataset.id);
+  else if (b.dataset.bud) { const key = mkey(vy, vm), lim = { ...((budgets[key] || {}).limits || {}) }; delete lim[b.dataset.bud]; saveBudgets(key, lim); }
+  else if (b.dataset.rec) { const r = settings.recurring.find(x => x.id === b.dataset.rec); if (r) { r.end = ymd(todayD()); saveSettings(); } }
+  else if (b.dataset.goal) { settings.goals = settings.goals.filter(g => g.id !== b.dataset.goal); saveSettings(); }
+  else if (b.dataset.debtdel) { settings.debts = settings.debts.filter(d => d.id !== b.dataset.debtdel); saveSettings(); }
+});
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-gadd],[data-gtake],[data-paid]"); if (!t) return;
+  if (t.dataset.paid) { const d = settings.debts.find(x => x.id === t.dataset.paid); if (d) { d.paid = ymd(todayD()); saveSettings(); } return; }
+  const id = t.dataset.gadd || t.dataset.gtake, g = settings.goals.find(x => x.id === id), inp = $("gi-" + id);
+  const amt = amountOnly(inp.value);
+  if (!g || !amt) { inp.focus(); return; }
+  g.deps = [...(g.deps || []), { date: ymd(todayD()), amount: t.dataset.gtake ? -amt : amt }];
+  saveSettings();
+});
+
+$("cal").addEventListener("click", e => {
+  const b = e.target.closest("button[data-day]"); if (!b) return;
+  const d = +b.dataset.day;
+  selDay = selDay === d ? 0 : d;
+  if (selDay) $("date").value = mkey(vy, vm) + "-" + pad(d);
+  render();
+});
+
+document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => {
+  tab = b.dataset.tab;
+  document.querySelectorAll("nav.tabs button").forEach(x => x.classList.toggle("on", x === b));
+  ["main", "plan", "debt"].forEach(t => $("tab-" + t).hidden = t !== tab);
+  render(); window.scrollTo(0, 0);
+});
+
+// Xarid kiritish
+CAT_NAMES.forEach(c => { for (const id of ["cat", "recCat"]) { const o = document.createElement("option"); o.value = c; o.textContent = c; $(id).appendChild(o); } });
+$("date").value = ymd(new Date());
+function parsed() { return $("txt").value.split("\n").map(parseLine).filter(Boolean); }
+$("txt").addEventListener("input", () => {
+  $("preview").innerHTML = parsed().map(x => x.bad
+    ? '<div class="bad"><span>' + esc(x.raw) + "</span><span>narx topilmadi</span></div>"
+    : "<div><span>" + esc(x.name) + ' <span class="hint">· ' + esc($("cat").value || guessCat(x.name)) + '</span></span><span class="num">' + fmt(x.amount) + "</span></div>").join("");
+});
+$("cat").addEventListener("change", () => $("txt").dispatchEvent(new Event("input")));
+$("add").addEventListener("click", async () => {
+  const p = parsed(), good = p.filter(x => !x.bad);
+  $("msg").className = "msg";
+  if (!good.length) { $("msg").textContent = 'Narxi bilan yozing, masalan: "non 5000".'; return; }
+  const date = $("date").value || ymd(new Date());
+  const list = good.map(x => ({ date, name: x.name, amount: x.amount, cat: $("cat").value || guessCat(x.name), ts: Date.now() }));
+  $("add").disabled = true;
+  try {
+    await addItems(list);
+    $("txt").value = ""; $("preview").innerHTML = "";
+    vy = +date.slice(0, 4); vm = +date.slice(5, 7) - 1; render();
+    const hit = budgetRows(monthItems(vy, vm)).find(r => r.level === "red" && list.some(i => (i.cat || "").toLowerCase() === r.k.toLowerCase() || i.name.toLowerCase().includes(r.k.toLowerCase())));
+    if (hit) { $("msg").className = "msg warn"; $("msg").textContent = "Qo'shildi, lekin " + cap(hit.k) + " limiti tugadi!"; }
+    else $("msg").textContent = list.length + " ta xarid qo'shildi: " + fmt(sum(list)) + " so'm" + (p.length > good.length ? ". Narxsiz qatorlar o'tkazib yuborildi." : ".");
+  } catch (e) { $("msg").textContent = "Saqlab bo'lmadi. Internetni tekshirib, qayta urinib ko'ring."; }
+  $("add").disabled = false;
+});
+
+// Oylik
+$("salEdit").onclick = () => { $("salForm").hidden = false; $("salTxt").value = salaryFor(mkey(vy, vm)).v || ""; $("salTxt").focus(); };
+$("salSave").onclick = async () => {
+  const a = amountOnly($("salTxt").value);
+  if (!a) { $("salTxt").value = ""; $("salTxt").placeholder = "Masalan: 5 mln"; $("salTxt").focus(); return; }
+  $("salSave").disabled = true;
+  try { await saveMonth(mkey(vy, vm), { salary: a }); } catch (e) {}
+  $("salSave").disabled = false;
+};
+$("salTxt").addEventListener("keydown", e => { if (e.key === "Enter") $("salSave").click(); });
+
+// Limit
+$("budAdd").addEventListener("click", async () => {
+  const x = parseLine($("budTxt").value);
+  if (!x || x.bad || x.name === "Xarid") { $("budTxt").value = ""; $("budTxt").placeholder = "Masalan: kitob 150 ming"; $("budTxt").focus(); return; }
+  const key = mkey(vy, vm), lim = { ...((budgets[key] || {}).limits || {}) };
+  lim[x.name.toLowerCase()] = x.amount;
+  $("budAdd").disabled = true;
+  try { await saveBudgets(key, lim); $("budTxt").value = ""; } catch (e) {}
+  $("budAdd").disabled = false;
+});
+$("budTxt").addEventListener("keydown", e => { if (e.key === "Enter") $("budAdd").click(); });
+
+// Doimiy to'lov
+$("recFreq").onchange = () => $("recDayWrap").hidden = $("recFreq").value !== "month";
+$("recAdd").onclick = () => {
+  const name = $("recName").value.trim(), amount = amountOnly($("recAmt").value), freq = $("recFreq").value;
+  if (!name) return $("recName").focus();
+  if (!amount) return $("recAmt").focus();
+  const day = Math.min(31, Math.max(1, +$("recDay").value || 1));
+  const start = freq === "month" ? mkey(now.getFullYear(), now.getMonth()) + "-01" : ymd(todayD());
+  settings.recurring.push({ id: uid8(), name, amount, freq, day, cat: $("recCat").value || guessCat(name), start, skips: [] });
+  $("recName").value = ""; $("recAmt").value = "";
+  saveSettings();
+};
+
+// Jamg'arma
+$("goalAdd").onclick = () => {
+  const x = parseLine($("goalTxt").value);
+  if (!x || x.bad || x.name === "Xarid") { $("goalTxt").value = ""; $("goalTxt").placeholder = "Masalan: noutbuk 8 mln"; return $("goalTxt").focus(); }
+  settings.goals.push({ id: uid8(), name: x.name, target: x.amount, deps: [] });
+  $("goalTxt").value = "";
+  saveSettings();
+};
+
+// Qarz
+let ddir = "in";
+$("dirIn").onclick = () => { ddir = "in"; $("dirIn").classList.add("on"); $("dirOut").classList.remove("on"); };
+$("dirOut").onclick = () => { ddir = "out"; $("dirOut").classList.add("on"); $("dirIn").classList.remove("on"); };
+$("dAdd").onclick = () => {
+  const who = $("dWho").value.trim(), amount = amountOnly($("dAmt").value);
+  if (!who) return $("dWho").focus();
+  if (!amount) return $("dAmt").focus();
+  settings.debts.push({ id: uid8(), who, amount, dir: ddir, due: $("dDue").value || "", note: $("dNote").value.trim(), paid: "", created: ymd(todayD()) });
+  ["dWho", "dAmt", "dDue", "dNote"].forEach(id => $(id).value = "");
+  $("dMsg").textContent = "Yozib qo'yildi: " + who + ", " + fmt(amount) + " so'm.";
+  saveSettings();
+};
+
+// ---------- Zaxira ----------
+$("bakOut").onclick = async () => {
+  const data = JSON.stringify({ app: "harajat-daftari", v: 2, items, budgets, settings }, null, 1);
+  const name = "harajat-zaxira-" + ymd(todayD()) + ".json";
+  let dl = null;
+  try { if (window.claude && claude.use) dl = await claude.use("downloads"); } catch (e) {}
+  try {
+    if (dl) { await dl.save({ filename: name, data }); $("bakMsg").textContent = "Saqlandi."; return; }
+    if (!window.claude) {   // oddiy sayt sifatida ochilganda
+      const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([data], { type: "application/json" })); a.download = name; a.click();
+      $("bakMsg").textContent = "Fayl yuklab olindi."; return;
+    }
+  } catch (e) { if (e && e.code === "declined") { $("bakMsg").textContent = "Bekor qilindi."; return; } }
+  $("bakTxt").hidden = false; $("bakTxt").value = data; $("bakTxt").select();
+  $("bakMsg").textContent = "Faylni saqlab bo'lmadi. Shu matnni nusxalab, xavfsiz joyga qo'ying.";
+};
+let pending = null;
+$("bakFile").onchange = () => {
+  const f = $("bakFile").files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (d.app !== "harajat-daftari") throw 0;
+      pending = d;
+      $("bakMsg").className = "msg warn";
+      $("bakMsg").textContent = "Faylda " + (d.items || []).length + " ta xarid bor. Hozirgi ma'lumot shu bilan almashtiriladi.";
+      $("bakConfirm").hidden = false;
+    } catch (e) { $("bakMsg").className = "msg warn"; $("bakMsg").textContent = "Bu fayl Harajat Daftari zaxirasi emas."; }
+  };
+  r.readAsText(f);
+  $("bakFile").value = "";
+};
+$("bakConfirm").onclick = async () => {
+  if (!pending) return;
+  $("bakConfirm").disabled = true;
+  const d = pending; pending = null;
+  try {
+    if (col) {
+      for (const i of items) await col.doc(i.id).delete();
+      for (const i of d.items || []) { const { id, ...rest } = i; await col.doc(String(id).replace(/[^\w.~:@+-]/g, "_")).set(rest); }
+      for (const k in d.budgets || {}) { const b = d.budgets[k]; await col.doc("budget-" + k).set({ type: "budget", month: k, salary: b.salary || 0, limits: b.limits || {} }); }
+      settings = normSettings(d.settings); await saveSettings();
+    } else {
+      items = d.items || []; budgets = d.budgets || {}; normBudgets(); settings = normSettings(d.settings); demo = false; saveLocal(); render();
+    }
+    $("bakMsg").className = "msg"; $("bakMsg").textContent = "Tiklandi.";
+  } catch (e) { $("bakMsg").className = "msg warn"; $("bakMsg").textContent = "Tiklashda xato bo'ldi, qayta urinib ko'ring."; }
+  $("bakConfirm").hidden = true; $("bakConfirm").disabled = false;
+};
+
+$("prev").onclick = () => { vm--; if (vm < 0) { vm = 11; vy--; } selDay = 0; render(); };
+$("next").onclick = () => { vm++; if (vm > 11) { vm = 0; vy++; } selDay = 0; render(); };
+
+// ---------- Namuna (saqlanmaydi) ----------
+function loadDemo() {
+  const sample = [["non", 5000], ["taksi", 18000], ["obed", 35000], ["sut", 12000], ["metro", 2000], ["kofe", 15000], ["dori", 24000], ["kitob", 50000], ["meva", 28000], ["kino", 40000], ["kurtka", 90000]];
+  const n = now.getDate(); items = []; let k = 0;
+  for (let d = 1; d <= n; d++) {
+    const c = 1 + ((d * 7) % 3);
+    for (let j = 0; j < c; j++) {
+      const s = sample[(d * 5 + j * 3) % sample.length];
+      items.push({ id: "demo" + k++, date: ymd(new Date(vy, vm, d)), name: s[0], amount: s[1] + ((d * 13 + j * 7) % 5) * 1000, cat: guessCat(s[0]) });
+    }
+  }
+  demo = true; render();
+}
+
+render();
+initStore();
+</script>
+
+</body>
+</html>
